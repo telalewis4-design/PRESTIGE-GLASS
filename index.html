@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <title>Prestige Glass 237 - Miroirs LED & Design Architectural</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-white: #ffffff;
+            --bg-light: #f8f9fa;
+            --primary-dark: #0b0b0b;
+            --gold: #c5a059;
+            --gold-light: #e6ca85;
+            --gold-glow: rgba(197, 160, 89, 0.25);
+            --text-main: #2b2b2b;
+            --text-muted: #666666;
+            --border-gold: rgba(197, 160, 89, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            cursor: none;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-white);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, .brand-title {
+            font-family: 'Cinzel', serif;
+        }
+
+        /* CURSEUR PERSONNALISÉ */
+        .cursor-dot, .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+            transition: width 0.2s, height 0.2s;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--gold);
+        }
+
+        .cursor-outline {
+            width: 38px;
+            height: 38px;
+            border: 1.5px solid var(--gold);
+            background-color: rgba(197, 160, 89, 0.05);
+            transition: transform 0.1s ease-out;
+        }
+
+        /* HEADER AVEC HAMBURGER UNIVERSEL */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 6%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-gold);
+            animation: fadeInDown 0.8s ease;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 15px var(--gold-glow);
+            transition: transform 0.4s;
+        }
+        .logo-img:hover { transform: rotate(360deg); }
+
+        .brand-info h1 {
+            font-size: 1rem;
+            letter-spacing: 2px;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .brand-info span {
+            font-size: 0.75rem;
+            color: var(--gold);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        nav { display: none; }
+
+        /* ICÔNE HAMBURGER ANIMÉE */
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 32px;
+            height: 22px;
+            cursor: pointer;
+            z-index: 1100;
+            position: relative;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background: var(--primary-dark);
+            border-radius: 3px;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(9.5px) rotate(45deg);
+            background: var(--gold);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: scale(0);
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-9.5px) rotate(-45deg);
+            background: var(--gold);
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 1040;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 400px;
+            height: 100vh;
+            background: var(--bg-white);
+            box-shadow: -10px 0 40px rgba(0,0,0,0.15);
+            z-index: 1050;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 90px 40px 40px 40px;
+            gap: 20px;
+            overflow-y: auto;
+            transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            border-left: 1px solid var(--border-gold);
+        }
+
+        .mobile-menu.active { right: 0; }
+
+        .mobile-menu a {
+            color: var(--primary-dark);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            font-family: 'Cinzel', serif;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: color 0.3s, padding-left 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--gold);
+            padding-left: 8px;
+        }
+
+        .menu-btn-devis {
+            background: linear-gradient(135deg, var(--gold), #9e7b36);
+            color: white !important;
+            text-align: center;
+            padding: 14px !important;
+            border-radius: 30px;
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 15px var(--gold-glow);
+            border-bottom: none !important;
+            margin-top: 10px;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 95vh;
+            background: linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.92)), url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 75px;
+            animation: fadeIn 1.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero h2 {
+            font-size: 3.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            animation: slideUp 1s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h2 span { color: var(--gold); }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin-bottom: 35px;
+            font-weight: 300;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), #9e7b36);
+            color: var(--bg-white);
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px var(--gold-glow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(197, 160, 89, 0.4);
+        }
+
+        /* CATALOGUE & GALERIE */
+        .catalog-section, .gallery-section {
+            padding: 100px 6%;
+            background: var(--bg-light);
+        }
+
+        .gallery-section { background: var(--bg-white); }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.6rem;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .collections-grid, .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .collection-card, .gallery-item {
+            background: var(--bg-white);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .collection-card:hover, .gallery-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(197, 160, 89, 0.2);
+            border-color: var(--gold);
+        }
+
+        .card-img-wrapper, .gallery-item {
+            height: 260px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .card-img-wrapper img, .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .collection-card:hover .card-img-wrapper img, .gallery-item:hover img {
+            transform: scale(1.12);
+        }
+
+        .badge-count {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(15, 15, 15, 0.85);
+            color: var(--gold);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid var(--gold);
+            backdrop-filter: blur(5px);
+        }
+
+        .card-body { padding: 25px; }
+
+        .card-body h3 {
+            color: var(--primary-dark);
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        .card-body p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            margin-bottom: 20px;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .model-ref {
+            font-size: 0.72rem;
+            color: var(--gold);
+            font-weight: 700;
+            white-space: nowrap;
+            letter-spacing: -0.2px;
+        }
+
+        .btn-action-group {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .btn-quote-small, .btn-buy-small {
+            background: transparent;
+            border: 1.5px solid var(--gold);
+            color: var(--gold);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn-buy-small {
+            background: var(--gold);
+            color: var(--bg-white);
+        }
+
+        .btn-buy-small:hover, .btn-quote-small:hover {
+            filter: brightness(1.15);
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+            color: white;
+            padding: 20px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* SECTION CATALOGUE PDF DÉDIÉE */
+        .pdf-section {
+            padding: 100px 6%;
+            background: var(--bg-white);
+            text-align: center;
+        }
+
+        .pdf-container-wrapper {
+            max-width: 950px;
+            margin: 0 auto;
+            border: 2px solid var(--border-gold);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+            background: var(--bg-light);
+        }
+
+        /* MODALES */
+        #lightboxModal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(10px);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: fadeIn 0.3s ease;
+        }
+
+        #lightboxModal img {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 12px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 40px var(--gold-glow);
+        }
+
+        #lightboxModal span {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 45px;
+            cursor: pointer;
+            color: var(--gold);
+            transition: transform 0.3s;
+        }
+        #lightboxModal span:hover { transform: scale(1.2); }
+
+        #buyModal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(12px);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: var(--bg-white);
+            border-radius: 24px;
+            padding: 40px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid var(--border-gold);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: color 0.3s;
+        }
+        .close-modal:hover { color: var(--gold); }
+
+        /* DEVIS EXPRESS */
+        .quote-section {
+            padding: 100px 6%;
+            background: var(--bg-light);
+            display: flex;
+            justify-content: center;
+        }
+
+        .quote-box {
+            background: var(--bg-white);
+            border: 1px solid var(--border-gold);
+            border-radius: 24px;
+            padding: 50px;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.05);
+        }
+
+        .quote-box h2 {
+            text-align: center;
+            color: var(--primary-dark);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .quote-box p {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group.full { grid-column: span 2; }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary-dark);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            background: var(--bg-white);
+            border: 1px solid #ddd;
+            color: var(--text-main);
+            border-radius: 10px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--gold);
+            outline: none;
+            box-shadow: 0 0 12px var(--gold-glow);
+        }
+
+        .submit-whatsapp {
+            background: #25d366;
+            color: white;
+            width: 100%;
+            padding: 16px;
+            border: none;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .submit-whatsapp:hover {
+            background: #20ba5a;
+            transform: scale(1.02);
+        }
+
+        /* FOOTER — STRUCTURE FINALE - 4 COLONNES */
+        footer {
+            background: var(--primary-dark);
+            color: var(--bg-white);
+            padding: 80px 6% 30px 6%;
+            border-top: 1px solid var(--border-gold);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .footer-col p, .footer-col ul li a {
+            color: #b0b0b0;
+            font-size: 0.88rem;
+            text-decoration: none;
+            transition: color 0.3s, padding-left 0.3s;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul { list-style: none; }
+
+        .footer-col ul li a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+
+        .footer-brand-flex {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand-flex img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid var(--gold);
+            object-fit: cover;
+        }
+
+        .social-icons-footer {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-icons-footer a {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(197, 160, 89, 0.1);
+            border: 1px solid var(--border-gold);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--gold);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .social-icons-footer a:hover {
+            background: var(--gold);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 0.82rem;
+            color: #999;
+        }
+
+        .footer-bottom-links a {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-bottom-links a:hover { color: var(--gold); }
+
+        .back-to-top {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: transform 0.3s;
+        }
+        .back-to-top:hover { transform: translateY(-3px); }
+
+        .wa-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            box-shadow: 0 4px 25px rgba(37, 211, 102, 0.5);
+            z-index: 1000;
+            transition: transform 0.3s;
+        }
+        .wa-float:hover { transform: scale(1.12); }
+
+        @media(max-width: 992px) {
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media(max-width: 768px) {
+            .hero h2 { font-size: 2.4rem; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group.full { grid-column: span 1; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            * { cursor: auto; }
+            .cursor-dot, .cursor-outline { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- HEADER AVEC HAMBURGER UNIVERSEL -->
+    <header>
+        <div class="logo-container">
+            <img src="logo-site.jpg" alt="Logo Prestige Glass 237" class="logo-img">
+            <div class="brand-info">
+                <h1>PRESTIGE GLASS</h1>
+                <span>Reflétez votre prestige</span>
+            </div>
+        </div>
+
+        <div class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Menu de navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#accueil" onclick="toggleMenu()">Accueil</a>
+        <a href="#apropos" onclick="toggleMenu()">À propos</a>
+        <a href="#catalogue" onclick="toggleMenu()">Nos miroirs & Collections</a>
+        <a href="#galerie" onclick="toggleMenu()">Nos réalisations</a>
+        <a href="#catalogue-pdf" onclick="toggleMenu()">Catalogue PDF interactif</a>
+        <a href="#devis" class="menu-btn-devis" onclick="toggleMenu()"><i class="fab fa-whatsapp"></i> Demander un devis personnalisé</a>
+        <a href="https://wa.me/23790697060" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp" style="color: #25d366;"></i> WhatsApp Direct (+237)</a>
+    </div>
+
+    <!-- HERO -->
+    <section id="accueil" class="hero">
+        <h2>Reflétez Votre <span>Prestige</span></h2>
+        <p>L'excellence du miroir LED architectural et du sur-mesure au Cameroun. Commandez directement votre modèle ou configurez votre facture instantanée.</p>
+        <a href="#catalogue" class="btn-gold">Explorer le Catalogue Intégral</a>
+    </section>
+
+    <!-- SECTION À PROPOS -->
+    <section id="apropos" style="padding: 100px 6%; background: var(--bg-white);">
+        <div class="section-header">
+            <h2>À Propos de Prestige Glass 237</h2>
+            <p>Leader du miroir LED architectural et du design verrier haut de gamme au Cameroun</p>
+        </div>
+        <div style="max-width: 850px; margin: 0 auto; text-align: center; color: var(--text-muted); font-size: 1.05rem; font-weight: 300;">
+            <p style="margin-bottom: 20px;">Prestige Glass 237 redéfinit les espaces de vie et professionnels à travers des créations lumineuses uniques. De la conception sur mesure à l'installation minutieuse, nous allions esthétique contemporaine, technologie LED avancée et robustesse pour sublimer chaque intérieur.</p>
+            <p>Nos miroirs ne sont pas de simples accessoires : ils incarnent un art de vivre où le design architectural rencontre la perfection du reflet.</p>
+        </div>
+    </section>
+
+    <!-- CATALOGUE : LES 13 PRODUITS -->
+    <section id="catalogue" class="catalog-section">
+        <div class="section-header">
+            <h2>Nos 13 Collections Exclusives</h2>
+            <p>Cliquez sur n'importe quelle image pour l'agrandir ou commander directement</p>
+        </div>
+
+        <div class="collections-grid">
+            <div class="collection-card">
+                <div class="card-img-wrapper" onclick="openLightbox('Prisme_50000.jpg')">
+                    <img src="Prisme_50000.jpg" alt="Prisme">
+                    <span class="badge-count">Modèle Exclusif</span>
+                </div>
+                <div class="card-body">
+                    <h3>01. Prisme</h3>
+                    <p>Angles vifs et perspectives géométriques sophistiquées.</p>
+                    <div class="card-footer">
+                        <span class="model-ref">À partir de 50 000 FCFA</span>
+                        <div class="btn-action-group">
+                            <a href="#devis" class="btn-quote-small" onclick="selectCollection('Prisme')">Devis</a>
+                            <button class="btn-buy-small" onclick="openBuyModal('Collection Prisme')">Acheter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collection-card">
+                <div class="card-img-wrapper" onclick="openLightbox('Méandre_70000.jpg')">
+                    <img src="Méandre_70000.jpg" alt="Méandre">
+                    <span class="badge-count">Modèle Exclusif</span>
+                </div>
+                <div class="card-body">
+                    <h3>02. Méandre</h3>
+                    <p>Frises et contours géométriques subtilement illuminés.</p>
+                    <div class="card-footer">
+                        <span class="model-ref">À partir de 70 000 FCFA</span>
+                        <div class="btn-action-group">
+                            <a href="#devis" class="btn-quote-small" onclick="selectCollection('Méandre')">Devis</a>
+                            <button class="btn-buy-small" onclick="openBuyModal('Collection Méandre')">Acheter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collection-card">
+                <div class="card-img-wrapper" onclick="openLightbox('Perle_65000.jpg')">
+                    <img src="Perle_65000.jpg" alt="Perle">
+                    <span class="badge-count">Modèle Exclusif</span>
+                </div>
+                <div class="card-body">
+                    <h3>03. Perle</h3>
+                    <p>Points lumineux rythmés et éclats de lumière perlé.</p>
+                    <div class="card-footer">
+                        <span class="model-ref">À partir de 65 000 FCFA</span>
+                        <div class="btn-action-group">
+                            <a href="#devis" class="btn-quote-small" onclick="selectCollection('Perle')">Devis</a>
+                            <button class="btn-buy-small" onclick="openBuyModal('Collection Perle')">Acheter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collection-card">
+                <div class="card-img-wrapper" onclick="openLightbox('Opale_45000.jpg')">
+                    <img src="Opale_45000.jpg" alt="Opale">
+                    <span class="badge-count">Modèle Exclusif</span>
+                </div>
+                <div class="card-body">
+                    <h3>04. Opale</h3>
+                    <p>Lignes fluides et design architectural contemporain.</p>
+                    <div class="card-footer">
+                        <span class="model-ref">À partir de 45 000 FCFA</span>
+                        <div class="btn-action-group">
+                            <a href="#devis" class="btn-quote-small" onclick="selectCollection('Opale')">Devis</a>
+                            <button class="btn-buy-small" onclick="openBuyModal('Collection Opale')">Acheter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collection-card">
+                <div class="card-img-wrapper" onclick="openLightbox('Lentille_60000.jpg')">
+                    <img src="Lentille_60000.jpg" alt="Lentille">
+                    <span class="badge-count">Exception</span>
+                </div>
+                <div class="card-body">
+                    <h3>05. Lentille</h3>
+                    <p>Modèle d'exception aux finitions architecturales haut de gamme.</p>
+                    <div class="card-footer">
+                        <span class="model-ref">À partir de 60 000 FCFA</span>
+                        <div class="btn-action-group">
+                            <a href="#devis" class="btn-quote-small" onclick="selectCollection('Lentille')">Devis</a>
+                            <button class="btn-buy-small" onclick="openBuyModal('Collection Lentille')">Acheter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collection-card">
+                <div class="card-img-wrapper" onclick="openLightbox('Floralies_60000.jpg')">
+                    <img src="Floralies_60000.jpg" alt="Floralies">
+                    <span class="badge-count">Collection 6</span>
+                </div>
+                <div class="card-body">
+                    <h3>06. Floralies</h3>
+                    <p>Gravures fines et détails floraux dans le verre.</p>
+                    <div class="card-footer">
+                        <span class="model-ref">À partir de 60 000 FCFA</span>
+                        <div class="btn-action-group">
+                            <a href="#devis" class="btn-quote-small" onclick="selectCollection('Floralies')">Devis</a>
+                            <button class="btn-buy-small" onclick="openBuyModal('Collection Floralies')">Acheter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collection-card">
+                <div class="card-img-wrapper" onclick="openLightbox('Stature_65000.jpg')">
+                    <img src="Stature_65000.jpg" alt="Stature">
+                    <span class="badge-count">Collection 7</span>
+                </div>
+                <div class="card-body">
+                    <h3>07. Stature</h3>
+                    <p>Grand format en pied rétroéclairé pour un effet majestueux.</p>
+                    <div class="card-footer">
+                        <span class="model-ref">À partir de 65 000 FCFA</span>
+                        <div class="btn-action-group">
+                            <a href="#devis" class="btn-quote-small" onclick="selectCollection('Stature')">Devis</a>
+                            <button class="btn-buy-small" onclick="openBuyModal('Collection Stature')">Acheter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collection-card">
+                <div class="card-img-wrapper" onclick="openLightbox('Chrono_55000.jpg')">
+                    <img src="Chrono_55000.jpg" alt="Chrono">
+                    <span class="badge-count">Collection 8</span>
+                </div>
+                <div class="card-body">
+                    <h3>08. Chrono</h3>
+                    <p>Affichage LED intégré de l'heure et de la température.</p>
+                    <div class="card-footer">
+                        <span class="model-ref">À partir de 55 000 FCFA</span>
+                        <div class="btn-action-group">
+                            <a href="#devis" class="btn-quote-small" onclick="selectCollection('Chrono')">Devis</a>
+                            <button class="btn-buy-small" onclick="openBuyModal('Collection Chrono')">Acheter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collection-card">
+                <div class="card-img-wrapper" onclick="openLightbox('Liseré_40000.jpg')">
+                    <img src="Liseré_40000.jpg" alt="Liseré">
+                    <span class="badge-count">Collection 9</span>
+                </div>
+                <div class="card-body">
+                    <h3>09. Liseré</h3>
+                    <p>Contours lumineux raffinés pour un style épuré.</p>
+                    <div class="card-footer">
+                        <span class="model-ref">À partir de 40 000 FCFA</span>
+                        <div class="btn-action-group">
+                            <a href="#devis" class="btn-quote-small" onclick="selectCollection('Liseré')">Devis</a>
+                            <button class="btn-buy-small" onclick="openBuyModal('Collection Liseré')">Acheter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collection-card">
+                <div class="card-img-wrapper" onclick="openLightbox('Arabesque_70000.jpg')">
+                    <img src="Arabesque_70000.jpg" alt="Arabesque">
+                    <span class="badge-count">Collection 10</span>
+                </div>
+                <div class="card-body">
+                    <h3>10. Arabesque</h3>
+                    <p>Volutes lumineuses d'inspiration classique et moderne.</p>
+                    <div class="card-footer">
+                        <span class="model-ref">À partir de 70 000 FCFA</span>
+                        <div class="btn-action-group">
+                            <a href="#devis" class="btn-quote-small" onclick="selectCollection('Arabesque')">Devis</a>
+                            <button class="btn-buy-small" onclick="openBuyModal('Collection Arabesque')">Acheter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collection-card">
+                <div class="card-img-wrapper" onclick="openLightbox('Galet_45000.jpg')">
+                    <img src="Galet_45000.jpg" alt="Galet">
+                    <span class="badge-count">Collection 11</span>
+                </div>
+                <div class="card-body">
+                    <h3>11. Galet</h3>
+                    <p>Silhouettes organiques avec encadrement de prestige.</p>
+                    <div class="card-footer">
+                        <span class="model-ref">À partir de 45 000 FCFA</span>
+                        <div class="btn-action-group">
+                            <a href="#devis" class="btn-quote-small" onclick="selectCollection('Galet')">Devis</a>
+                            <button class="btn-buy-small" onclick="openBuyModal('Collection Galet')">Acheter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collection-card">
+                <div class="card-img-wrapper" onclick="openLightbox('Halo_40000.jpg')">
+                    <img src="Halo_40000.jpg" alt="Halo">
+                    <span class="badge-count">Collection 12</span>
+                </div>
+                <div class="card-body">
+                    <h3>12. Halo</h3>
+                    <p>Miroir lumineux aux contours fluides et chaleureux.</p>
+                    <div class="card-footer">
+                        <span class="model-ref">À partir de 40 000 FCFA</span>
+                        <div class="btn-action-group">
+                            <a href="#devis" class="btn-quote-small" onclick="selectCollection('Halo')">Devis</a>
+                            <button class="btn-buy-small" onclick="openBuyModal('Collection Halo')">Acheter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collection-card">
+                <div class="card-img-wrapper" onclick="openLightbox('Craquelé_70000.jpg')">
+                    <img src="Craquelé_70000.jpg" alt="Craquelé">
+                    <span class="badge-count">Collection 13</span>
+                </div>
+                <div class="card-body">
+                    <h3>13. Craquelé</h3>
+                    <p>Miroir rétroéclairé aux motifs géométriques et artistiques.</p>
+                    <div class="card-footer">
+                        <span class="model-ref">À partir de 70 000 FCFA</span>
+                        <div class="btn-action-group">
+                            <a href="#devis" class="btn-quote-small" onclick="selectCollection('Craquelé')">Devis</a>
+                            <button class="btn-buy-small" onclick="openBuyModal('Collection Craquelé')">Acheter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIE DES RÉALISATIONS (AVEC IM1 À IM10 ET IMAGES 8 À 20) -->
+    <section id="galerie" class="gallery-section">
+        <div class="section-header">
+            <h2>Nos Réalisations & Anciens Modèles</h2>
+            <p>Portfolio de nos installations, chantiers en cours et modèles réalisés au Cameroun</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox('im1.jpg')">
+                <img src="im1.jpg" alt="Réalisation 1">
+                <div class="gallery-overlay">Miroir Arqué Rétroéclairé - Modèle Classique</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('im2.jpg')">
+                <img src="im2.jpg" alt="Réalisation 2">
+                <div class="gallery-overlay">Ambiance Chambre - LED Rose</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('im3.jpg')">
+                <img src="im3.jpg" alt="Réalisation 3">
+                <div class="gallery-overlay">Miroir Organique Mural</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('im4.jpg')">
+                <img src="im4.jpg" alt="Réalisation 4">
+                <div class="gallery-overlay">Forme Asymétrique Spéciale</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('im5.jpg')">
+                <img src="im5.jpg" alt="Réalisation 5">
+                <div class="gallery-overlay">Couloir & Entrée Rétroéclairés</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('im6.jpg')">
+                <img src="im6.jpg" alt="Réalisation 6">
+                <div class="gallery-overlay">Salon Standing avec Décoration</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('im7.jpg')">
+                <img src="im7.jpg" alt="Réalisation 7">
+                <div class="gallery-overlay">Série Professionnelle pour Commerces</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('im8.jpg')">
+                <img src="im8.jpg" alt="Réalisation 8">
+                <div class="gallery-overlay">Ensemble Coiffeuse & Pouf</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('im9.jpg')">
+                <img src="im9.jpg" alt="Réalisation 9">
+                <div class="gallery-overlay">Chambre Parentale Haut Standing</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('im10.jpg')">
+                <img src="im10.jpg" alt="Réalisation 10">
+                <div class="gallery-overlay">Installation Murale Intérieure</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('images (8).jpeg')">
+                <img src="images (8).jpeg" alt="Réalisation 11">
+                <div class="gallery-overlay">Modèle Design Contemporain</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('images (9).jpeg')">
+                <img src="images (9).jpeg" alt="Réalisation 12">
+                <div class="gallery-overlay">Miroir Mural Haut Standing</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('images (10).jpeg')">
+                <img src="images (10).jpeg" alt="Réalisation 13">
+                <div class="gallery-overlay">Décoration Intérieure Sur Mesure</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('images (11).jpeg')">
+                <img src="images (11).jpeg" alt="Réalisation 14">
+                <div class="gallery-overlay">Installation Salle de Bain</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('images (12).jpeg')">
+                <img src="images (12).jpeg" alt="Réalisation 15">
+                <div class="gallery-overlay">Miroir Rétroéclairé Luxe</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('images (13).jpeg')">
+                <img src="images (13).jpeg" alt="Réalisation 16">
+                <div class="gallery-overlay">Aménagement Espace Pro</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('images (14).jpeg')">
+                <img src="images (14).jpeg" alt="Réalisation 17">
+                <div class="gallery-overlay">Modèle Architectural Avancé</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('images (15).jpeg')">
+                <img src="images (15).jpeg" alt="Réalisation 18">
+                <div class="gallery-overlay">Finition Verrier Premium</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('images (16).jpeg')">
+                <img src="images (16).jpeg" alt="Réalisation 19">
+                <div class="gallery-overlay">Miroir Lumineux Design</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('images (17).jpeg')">
+                <img src="images (17).jpeg" alt="Réalisation 20">
+                <div class="gallery-overlay">Conception Salon & Séjour</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('images (18).jpeg')">
+                <img src="images (18).jpeg" alt="Réalisation 21">
+                <div class="gallery-overlay">Installation Murale Élégante</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('images (19).jpeg')">
+                <img src="images (19).jpeg" alt="Réalisation 22">
+                <div class="gallery-overlay">Miroir Style Contemporain</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('images (20).jpeg')">
+                <img src="images (20).jpeg" alt="Réalisation 23">
+                <div class="gallery-overlay">Projet Architectural Complet</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION CATALOGUE PDF INTERACTIF -->
+    <section id="catalogue-pdf" class="pdf-section">
+        <div class="section-header">
+            <h2>Catalogue PDF Numérique</h2>
+            <p>Feuilletez notre brochure officielle directement en ligne ou téléchargez-la</p>
+        </div>
+        <div class="pdf-container-wrapper">
+            <embed src="Catalogue_Miroirs_LED_par_collections.pdf" type="application/pdf" width="100%" height="650px" />
+        </div>
+        <div style="margin-top: 30px;">
+            <a href="Catalogue_Miroirs_LED_par_collections.pdf" download class="btn-gold" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i> Télécharger le Catalogue PDF Officiel</a>
+        </div>
+    </section>
+
+    <!-- DEVIS EXPRESS -->
+    <section id="devis" class="quote-section">
+        <div class="quote-box">
+            <h2>Générateur de Devis Instantané</h2>
+            <p>Configurez votre demande et envoyez-la directement sur notre canal WhatsApp officiel.</p>
+            <form id="futurQuoteForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="clientName">Nom complet</label>
+                        <input type="text" id="clientName" required placeholder="Votre nom...">
+                    </div>
+                    <div class="form-group">
+                        <label for="clientPhone">Téléphone / WhatsApp</label>
+                        <input type="text" id="clientPhone" required placeholder="Ex: +237 ...">
+                    </div>
+                    <div class="form-group">
+                        <label for="selectedColl">Collection Choisie</label>
+                        <select id="selectedColl">
+                            <option value="Prisme">01. Prisme</option>
+                            <option value="Méandre">02. Méandre</option>
+                            <option value="Perle">03. Perle</option>
+                            <option value="Opale">04. Opale</option>
+                            <option value="Lentille">05. Lentille</option>
+                            <option value="Floralies">06. Floralies</option>
+                            <option value="Stature">07. Stature</option>
+                            <option value="Chrono">08. Chrono</option>
+                            <option value="Liseré">09. Liseré</option>
+                            <option value="Arabesque">10. Arabesque</option>
+                            <option value="Galet">11. Galet</option>
+                            <option value="Halo">12. Halo</option>
+                            <option value="Craquelé">13. Craquelé</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="clientDimensions">Dimensions Souhaitées</label>
+                        <input type="text" id="clientDimensions" placeholder="Ex: 800x600 mm ou sur-mesure">
+                    </div>
+                    <div class="form-group full">
+                        <label for="clientDetails">Précisions Complémentaires</label>
+                        <textarea id="clientDetails" rows="3" placeholder="Référence précise, options ou quantité..."></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="submit-whatsapp"><i class="fab fa-whatsapp" style="font-size: 1.3rem;"></i> Transmettre la demande de devis</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- MODALES -->
+    <div id="lightboxModal" onclick="closeLightbox()">
+        <span onclick="closeLightbox()">&times;</span>
+        <img id="lightboxImg" src="" alt="Agrandissement Miroir">
+    </div>
+
+    <div id="buyModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeBuyModal()">&times;</span>
+            <h3>Générer votre Facture d'Achat</h3>
+            <p id="modalProductName" style="color: var(--gold); font-weight: 600; margin-bottom: 20px;"></p>
+            <form id="buyForm">
+                <div class="form-group">
+                    <label for="buyName">Nom complet</label>
+                    <input type="text" id="buyName" required placeholder="Votre nom...">
+                </div>
+                <div class="form-group">
+                    <label for="buyPhone">Téléphone / WhatsApp</label>
+                    <input type="text" id="buyPhone" required placeholder="Ex: +237 ...">
+                </div>
+                <div class="form-group">
+                    <label for="buyColor">Couleur de l'éclairage LED</label>
+                    <select id="buyColor">
+                        <option value="Blanc Chaud (3000K)">Blanc Chaud (Ambiance chaleureuse)</option>
+                        <option value="Blanc Neutre (4000K)">Blanc Neutre (Lumière naturelle)</option>
+                        <option value="Blanc Froid (6000K)">Blanc Froid (Intense & Moderne)</option>
+                        <option value="LED Multicolore RGB">LED Multicolore RGB avec Télécommande</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="buyQty">Quantité</label>
+                    <input type="number" id="buyQty" value="1" min="1" max="50" required>
+                </div>
+                <div class="form-group">
+                    <label for="buyAddress">Adresse de livraison / Ville au Cameroun</label>
+                    <input type="text" id="buyAddress" required placeholder="Ex: Douala, Yaoundé...">
+                </div>
+                <button type="submit" class="submit-whatsapp"><i class="fab fa-whatsapp" style="font-size: 1.3rem;"></i> Valider et envoyer la facture sur WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- FOOTER — STRUCTURE FINALE COMPLÈTE (4 COLONNES) -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-brand-flex">
+                    <img src="logo-site.jpg" alt="Prestige Glass 237">
+                    <h4 style="margin-bottom:0;">Prestige Glass 237</h4>
+                </div>
+                <p>L'excellence du miroir LED architectural et du sur-mesure au Cameroun.</p>
+                <p style="color: var(--gold); font-style: italic; margin-top: 10px;">"Reflétez votre prestige"</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Navigation & Produits</h4>
+                <ul>
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#apropos">À propos</a></li>
+                    <li><a href="#catalogue">Miroirs décoratifs & sur mesure</a></li>
+                    <li><a href="#catalogue">Salle de bain, salon & chambre</a></li>
+                    <li><a href="#catalogue">Commerces et bureaux</a></li>
+                    <li><a href="#galerie">Nos réalisations</a></li>
+                    <li><a href="#devis">Demande de devis personnalisé</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact & Réseaux</h4>
+                <p><i class="fas fa-phone-alt" style="color:var(--gold); margin-right:8px;"></i> +237 906 970 60</p>
+                <p><i class="fab fa-whatsapp" style="color:#25d366; margin-right:8px;"></i> +237 906 970 60</p>
+                <p><i class="fas fa-envelope" style="color:var(--gold); margin-right:8px;"></i> contact@prestigeglass237.com</p>
+                <p><i class="fas fa-map-marker-alt" style="color:var(--gold); margin-right:8px;"></i> Douala / Yaoundé, Cameroun</p>
+                
+                <div class="social-icons-footer">
+                    <a href="https://www.facebook.com/share/1LkLCCqn9w/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/23790697060" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Informations Légales</h4>
+                <ul>
+                    <li><a href="#">Mentions légales</a></li>
+                    <li><a href="#">Politique de confidentialité</a></li>
+                    <li><a href="#">Conditions générales de vente (CGV)</a></li>
+                    <li><a href="#">Politique de livraison & retour</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div>© 2026 Prestige Glass 237. Tous droits réservés.</div>
+            <div class="footer-bottom-links">
+                <a href="#">Politique de confidentialité</a> | 
+                <a href="#">Mentions légales</a> | 
+                <a href="#">Conditions générales de vente</a>
+            </div>
+            <div>
+                <a href="#accueil" class="back-to-top">Retour en haut <i class="fas fa-arrow-up"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/23790697060" class="wa-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp direct"><i class="fab fa-whatsapp"></i></a>
+
+    <script>
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            cursorOutline.style.left = `${posX}px`;
+            cursorOutline.style.top = `${posY}px`;
+        });
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('menuOverlay');
+            const btn = document.getElementById('hamburgerBtn');
+            
+            menu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            btn.classList.toggle('active');
+        }
+
+        let currentProduct = "";
+
+        function openLightbox(imgSrc) {
+            document.getElementById('lightboxImg').src = imgSrc;
+            document.getElementById('lightboxModal').style.display = 'flex';
+        }
+        function closeLightbox() {
+            document.getElementById('lightboxModal').style.display = 'none';
+        }
+
+        function openBuyModal(productName) {
+            currentProduct = productName;
+            document.getElementById('modalProductName').innerText = "Article : " + productName;
+            document.getElementById('buyModal').style.display = 'flex';
+        }
+        function closeBuyModal() {
+            document.getElementById('buyModal').style.display = 'none';
+        }
+
+        function selectCollection(collName) {
+            const select = document.getElementById('selectedColl');
+            for(let i=0; i<select.options.length; i++) {
+                if(select.options[i].text.includes(collName)) {
+                    select.selectedIndex = i;
+                    break;
+                }
+            }
+        }
+
+        function sanitizeInput(str) {
+            const temp = document.createElement('div');
+            temp.textContent = str;
+            return temp.innerHTML;
+        }
+
+        document.getElementById('futurQuoteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = sanitizeInput(document.getElementById('clientName').value);
+            const phone = sanitizeInput(document.getElementById('clientPhone').value);
+            const collection = sanitizeInput(document.getElementById('selectedColl').value);
+            const dimensions = sanitizeInput(document.getElementById('clientDimensions').value);
+            const details = sanitizeInput(document.getElementById('clientDetails').value);
+
+            const text = `*NOUVELLE DEMANDE DE DEVIS - PRESTIGE GLASS 237*%0A%0A- *Nom* : ${name}%0A- *Téléphone* : ${phone}%0A- *Collection* : ${collection}%0A- *Dimensions* : ${dimensions}%0A- *Détails* : ${details}`;
+            window.open(`https://wa.me/23790697060?text=${text}`, '_blank');
+        });
+
+        document.getElementById('buyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = sanitizeInput(document.getElementById('buyName').value);
+            const phone = sanitizeInput(document.getElementById('buyPhone').value);
+            const color = sanitizeInput(document.getElementById('buyColor').value);
+            const qty = sanitizeInput(document.getElementById('buyQty').value);
+            const address = sanitizeInput(document.getElementById('buyAddress').value);
+
+            const invoiceText = `*FACTURE / COMMANDE - PRESTIGE GLASS 237*%0A%0A- *Client* : ${name}%0A- *Téléphone* : ${phone}%0A- *Produit* : ${currentProduct}%0A- *Éclairage LED* : ${color}%0A- *Quantité* : ${qty}%0A- *Adresse de livraison* : ${address}%0A%0A_Merci de me confirmer les modalités de règlement et le délai exact._`;
+            window.open(`https://wa.me/23790697060?text=${invoiceText}`, '_blank');
+            closeBuyModal();
+        });
+    </script>
+</body>
+</html>
+ 
